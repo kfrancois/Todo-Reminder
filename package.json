@@ -2,7 +2,7 @@
   "name": "todo-reminder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kfrancois.github.com/Todo-Reminder/",
+  "homepage": "https://kfrancois.gitlab.io/Todo-Reminder/",
   "dependencies": {
     "@types/history": "^4.6.2",
     "@types/react-redux": "^6.0.0",
