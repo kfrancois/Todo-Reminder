@@ -7,7 +7,9 @@ pages:
   cache:
     paths:
     - node_modules/
- 
+  variables:
+    PUBLIC_URL: "/Todo-Reminder"
+
   stage: deploy
   script:
   - yarn run build
