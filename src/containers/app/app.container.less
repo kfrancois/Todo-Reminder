@@ -1,0 +1,42 @@
+@import "./../../styles/theme.less";
+
+:global {
+  .ant-layout {
+    height: 100%;
+    background-color: @background-color;
+  }
+
+  .ant-menu-horizontal {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header.ant-layout-header {
+     height: auto;
+     padding: 0;
+     line-height: 46px;
+  }
+  
+  .anticon-ant-design {
+    color: @primary-color;
+  }
+  .ant-menu-item > .active-link {
+    color: @primary-color !important;
+  }
+}
+
+.menu-left {
+  position: absolute;
+  left: 1rem;
+}
+.menu-right {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+}
+
+#content-container {
+  padding: 20px 0;
+  width: 80%;
+  margin: 0 auto;
+}
