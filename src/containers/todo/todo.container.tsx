@@ -1,4 +1,5 @@
 import * as React from 'react';
+import AnimateHeight from 'react-animate-height';
 import { connect } from 'react-redux';
 import TodoInputComponent from '../../components/todo-input.component';
 import TodoListComponent from '../../components/todo-list.component';
@@ -16,14 +17,15 @@ export class TodoContainer extends React.Component<ITodoContainerProps> {
         const { todos, addTodo, removeTodo } = this.props;
         const todosEmpty = todos.length === 0;
         return (
-            <React.Fragment>
-                <div className="todo-list--container">
-                    <h1 className="text-center">Your todo's</h1>
-                    {!todosEmpty && <TodoListComponent data={todos} removeItem={removeTodo} />}
+            <AnimateHeight
+                duration={500}
+                height={'auto'}
+                className="todo-list--container">
+                <h1 className="text-center">Your todo's</h1>
+                {!todosEmpty && <TodoListComponent data={todos} removeItem={removeTodo} />}
 
-                    <TodoInputComponent onSubmit={addTodo} />
-                </div>
-            </React.Fragment>
+                <TodoInputComponent onSubmit={addTodo} />
+            </AnimateHeight>
         );
     }
 }
