@@ -29,22 +29,13 @@ const dropdown = (
 
 interface IAppContainerProps {
   history: History;
-  currentRoute: string;
-  changeRoute: (route: string) => void;
+  route: string;
 }
 
 class AppContainer extends React.Component<IAppContainerProps> {
-  constructor(props: IAppContainerProps) {
-    super(props);
-    this.props.history.listen(route => {
-      this.props.changeRoute(route.pathname);
-    });
-
-    this.props.changeRoute(window.location.pathname);
-  }
 
   public render() {
-    const { history, currentRoute } = this.props;
+    const { history, route } = this.props;
 
     return (
       <ConnectedRouter history={history}>
@@ -53,7 +44,7 @@ class AppContainer extends React.Component<IAppContainerProps> {
             <div className="menu-left">
               <Icon type="ant-design" />
             </div>
-            <Menu mode="horizontal" selectedKeys={[currentRoute]}>
+            <Menu mode="horizontal" selectedKeys={[route]}>
               <Menu.Item key="/todo">
                 <NavLink to="/todo">
                   <Icon type="bars" />Todos
@@ -91,19 +82,10 @@ class AppContainer extends React.Component<IAppContainerProps> {
 
 const mapStateToProps = (state: any) => {
   return {
-    currentRoute: state.route.activeRoute
+    route: state.router.location.pathname
   };
 };
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    changeRoute: (text: string) =>
-      dispatch({
-        payload: text,
-        type: 'CHANGE_ROUTE'
-      })
-  };
-};
+
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(AppContainer);
