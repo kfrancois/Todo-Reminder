@@ -1,6 +1,2 @@
 
-## Used:
- - https://reactjs.org/
- - https://github.com/Microsoft/TypeScript-React-Starter
- - https://redux.js.org/introduction
- - https://ant.design/
+### This repository is now maintained on https://gitlab.com/kfrancois/Todo-Reminder
