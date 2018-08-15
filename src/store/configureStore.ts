@@ -1,23 +1,26 @@
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import { route } from '../reducers/route';
 import * as reducers from './../reducers';
 
 export const history = createHistory({ basename: process.env.PUBLIC_URL });
 
 export default function configureStore(initialState = {}) {
-    const reducer = combineReducers({
-        ...reducers,
-        routing: routerReducer,
-    });
+  const reducer = combineReducers({
+    ...reducers,
+    route
+  });
 
-    // tslint:disable-next-line:no-string-literal
-    const devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() : (f: any) => f;
+  const composeEnhancer: typeof compose =
+    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const middleware = applyMiddleware(thunk, routerMiddleware(history));
 
-    const middleware = applyMiddleware(thunk, routerMiddleware(history));
+  const store = createStore(
+    connectRouter(history)(reducer),
+    composeEnhancer(middleware)
+  );
 
-    const store = middleware(devtools(createStore))(reducer);
-
-    return store;
+  return store;
 }
